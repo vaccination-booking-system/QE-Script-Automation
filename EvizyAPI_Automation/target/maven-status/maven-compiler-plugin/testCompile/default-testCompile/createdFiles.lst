@@ -1,0 +1,9 @@
+starter\stepdefinitions\adminSteps.class
+starter\admin\login_superAdmin.class
+starter\admin\post_admin.class
+starter\stepdefinitions\loginSteps.class
+starter\stepdefinitions\superAdminSteps.class
+CucumberTestSuite.class
+starter\citizen\login_citizen.class
+starter\stepdefinitions\registerSteps.class
+starter\citizen\register_citizen.class
