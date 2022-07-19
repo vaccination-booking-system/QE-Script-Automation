@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="6" failures="0" name="Admin" skipped="0" tests="6" time="3.12" timestamp="2022-07-11 05:48:57"><testcase name="POST - Admin"><error message="Cannot invoke &quot;starter.admin.post_admin.setPostAdminEndpoint()&quot; because &quot;this.postadmin&quot; is null" type="java.lang.NullPointerException">Cannot invoke "starter.admin.post_admin.setPostAdminEndpoint()" because "this.postadmin" is null</error><system-err>Cannot invoke "starter.admin.post_admin.setPostAdminEndpoint()" because "this.postadmin" is null&#13;
-EvizyAPI.Automation@1.0-SNAPSHOT/starter.stepdefinitions.adminSteps.iSetEndpointForLoginAsAnAdmin(adminSteps.java:14)&#13;
-✽.I set endpoint for login as an admin(file:///C:/Users/ponda/Documents/GithubDesktop/Capstone%20Project/QE-Script-Automation/Web_Automation/QE-Script-Automation/EvizyAPI_Automation/src/test/resources/Admin/admin.feature:4)&#13;
-</system-err></testcase></testsuite>
