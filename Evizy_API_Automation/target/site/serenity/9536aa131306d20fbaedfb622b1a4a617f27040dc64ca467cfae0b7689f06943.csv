@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Admin","GET- All Admin","SUCCESS","2022-07-19T12:41:07.8944689+07:00[Asia/Jakarta]","0.0","15.43"
+"Admin","GET - Specific Admin using id","SUCCESS","2022-07-19T12:41:23.8056433+07:00[Asia/Jakarta]","0.0","5.14"
+"Admin","POST - Login Admin","SUCCESS","2022-07-19T12:41:29.649139+07:00[Asia/Jakarta]","0.0","1.64"

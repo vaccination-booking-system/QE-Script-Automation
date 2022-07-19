@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Family Member","POST- add family member","SUCCESS","2022-07-19T12:41:07.7538333+07:00[Asia/Jakarta]","0.0","15.99"
+"Family Member","GET - get specific user's family members","SUCCESS","2022-07-19T12:41:23.774391+07:00[Asia/Jakarta]","0.0","3.09"
+"Family Member","GET- Specific family member of user","SUCCESS","2022-07-19T12:41:27.3849648+07:00[Asia/Jakarta]","0.0","0.82"

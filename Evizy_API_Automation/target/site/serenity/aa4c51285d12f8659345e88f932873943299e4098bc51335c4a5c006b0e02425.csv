@@ -1,0 +1,6 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"City","POST- Create new city","SUCCESS","2022-07-19T12:41:06.7964202+07:00[Asia/Jakarta]","0.0","23.13"
+"City","GET- Get all city","SUCCESS","2022-07-19T12:41:30.2921735+07:00[Asia/Jakarta]","0.0","0.96"
+"City","GET - Get specific city using id","SUCCESS","2022-07-19T12:41:31.2771399+07:00[Asia/Jakarta]","0.0","1.01"
+"City","DELETE - Delete specific city","SUCCESS","2022-07-19T12:41:32.3006176+07:00[Asia/Jakarta]","0.0","0.77"
+"City","UPDATE - Update specific city","SUCCESS","2022-07-19T12:41:33.086903+07:00[Asia/Jakarta]","0.0","0.86"

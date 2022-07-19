@@ -1,0 +1,8 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Vaccine","POST - Create Vaccine","SUCCESS","2022-07-19T12:41:07.1606398+07:00[Asia/Jakarta]","0.0","21.66"
+"Vaccine","GET - Get specific vaccine","SUCCESS","2022-07-19T12:41:29.5744489+07:00[Asia/Jakarta]","0.0","1.02"
+"Vaccine","DELETE - Delete specific vaccine","SUCCESS","2022-07-19T12:41:30.6217287+07:00[Asia/Jakarta]","0.0","0.82"
+"Vaccine","PUT - Update vaccine name","SUCCESS","2022-07-19T12:41:31.4605286+07:00[Asia/Jakarta]","0.0","0.79"
+"Vaccine","GET- Get all vaccine","SUCCESS","2022-07-19T12:41:32.3444618+07:00[Asia/Jakarta]","0.0","0.87"
+"Vaccine","POST - Distribute vaccine to health facility","SUCCESS","2022-07-19T12:41:33.3974618+07:00[Asia/Jakarta]","0.0","0.72"
+"Vaccine","GET - vaccine stocks of health facility","SUCCESS","2022-07-19T12:41:34.1818633+07:00[Asia/Jakarta]","0.0","0.64"

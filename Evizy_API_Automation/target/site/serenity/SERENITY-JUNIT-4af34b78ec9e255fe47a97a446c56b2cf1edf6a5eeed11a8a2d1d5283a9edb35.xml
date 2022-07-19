@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Family Member" skipped="0" tests="4" time="19.89" timestamp="2022-07-19 12:41:07"><testcase name="POST- add family member"/><testcase name="GET - get specific user's family members"/><testcase name="GET- Specific family member of user"/></testsuite>

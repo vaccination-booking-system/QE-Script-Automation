@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Health Facilities" skipped="0" tests="4" time="21.83" timestamp="2022-07-19 12:41:07"><testcase name="POST- Create Health Facility"/><testcase name="GET - Get specific Health Facility"/><testcase name="GET - Get all health facilities"/><testcase name="DELETE - Delete health facility"/></testsuite>

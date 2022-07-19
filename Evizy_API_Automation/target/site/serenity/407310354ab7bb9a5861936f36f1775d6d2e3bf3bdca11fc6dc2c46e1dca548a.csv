@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"User","GET - GET all users","SUCCESS","2022-07-19T12:41:05.3161801+07:00[Asia/Jakarta]","0.0","18.26"
+"User","GET - Get specific user using id","SUCCESS","2022-07-19T12:41:23.6025034+07:00[Asia/Jakarta]","0.0","1.82"

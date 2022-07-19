@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update vaccination booking's status</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css"><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.11.3/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.11.3/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/>
+<!--CHART.JS-->
+<script src="chartjs/chart.js"></script>
+<script src="chartjs/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="chartjs/patternomaly.min.js"></script>
+<script>
+    // Register the plugin to all charts:
+    Chart.register(ChartDataLabels);
+</script>
+<!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.11.3/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.11.3/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<!-- ImgPreview -->
+<script src="scripts/imgpreview.full.jquery.js" type="text/javascript"></script>
+</head>
+
+<body class="results-page">
+
+
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle"></span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs">
+            <a href="index.html" class="breadcrumbs">Home</a>
+
+ <!-- inflection.of(breadcrumb.displayName).asATitle()-->
+            > <a href="74732c9606243a5e5fc5ad09fc4c8ed185cd4f5ed0fdd70ba1a478168acf0a8f.html">Vaccination Bookings</a>
+        > Update vaccination booking's status
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="bi bi-journal-check"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 19-07-2022 12:03</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                                <div>
+                                    <h3 class="discreet-story-header">
+                                        <i class="fs-2 bi bi-chat-left-quote title-icon"></i>
+                                        <span class="story-header-title">Vaccination Bookings </span>
+                                    </h3>
+
+                                </div>
+
+                        </td>
+                        <td valign="top">
+                            <p class="tag">
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon fa-2x' title='ERROR'></i></a></span>
+                            <span class="test-case-title">
+                                <span class="error-color">
+                                    Update vaccination booking's status
+                                        <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+</div>
+</div>
+
+<div class="clr"></div>
+
+    <div class="story-title">
+        <h3 class="story-header">Scenario Outline</h3>
+
+        <div class="scenario">Given I am on Evizy login admin page for vaccination session<br>When I enter my username and password for vaccination session and click login button<br>And I directed to dashboard<br>And I click vaccination bookings<br>And I click my health facility<br>And I click edit status button<br>And I click choose vaccination status "&lt;status&gt;"<br>And I click update button<br>And I success update vaccination status "&lt;result&gt;"</div>
+
+    </div>
+
+<div id="beforetable"></div>
+
+
+        <h3 class="story-header">Examples:&nbsp;</h3>
+            <div class="requirementNarrative"></div>
+
+
+            <p class="example-tag">
+            </p>
+
+        <div class="example-table test-report">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                        <th>Status</th>
+                        <th>Result</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="test-ERROR"><a href="#0">1</a></td>
+                            <td class="test-ERROR"><a
+                                        href="#0">vaccinated</a>
+                            </td>
+                            <td class="test-ERROR"><a
+                                        href="#0">vaccinated</a>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="test-ERROR"><a href="#1">2</a></td>
+                            <td class="test-ERROR"><a
+                                        href="#1">not_yet</a>
+                            </td>
+                            <td class="test-ERROR"><a
+                                        href="#1">not_yet</a>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+<div id="tablecontents">
+    <div>
+        <table class="step-table">
+            <tr class="step-titles">
+                <th width="65">
+                </th>
+                <th class="step-description-column greentext">
+                    Steps
+                </th>
+
+                    <th width="150" class="greentext">Screenshots</th>
+                <th width="130" class="greentext">Outcome</th>
+                <th width="100" class="greentext"><i title="Duration" class="bi bi-stopwatch"></i></th>
+            </tr>
+            <tr class="step-table-separator">
+                <td colspan="5"></td>
+            </tr>
+
+                <tr class="test-ERROR">
+
+                    <td width="50" class="step-icon">
+                        <a name="0"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection0 error-icon"
+                                   style="margin-left: 20px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                               style="display:block;">
+                                <span class="top-level-step">
+                                                1: Update vaccination booking's status ({status=vaccinated, result=vaccinated})
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="ERROR-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=0">
+                                    <img src="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         href="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=15">
+                                    <img src="665b50965319f8d02e8455eeb1452a1b29abac9d0c16d9b13e733ae69439a275.png"
+                                         href="665b50965319f8d02e8455eeb1452a1b29abac9d0c16d9b13e733ae69439a275.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="top-level-step">ERROR</span></td>
+                    <td width="100"><span class="top-level-step">45s 615ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection0" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-0"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                Given I am on Evizy login admin page for vaccination session
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=1">
+                                    <img src="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         href="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">30s 196ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-1"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                When I enter my username and password for vaccination session and click login button
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=2">
+                                    <img src="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         href="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=3">
+                                    <img src="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         href="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 931ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-2"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-2')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection0-2 success-icon"
+                                   style="margin-left: 40px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-2')"
+                               style="display:block;">
+                                <span class="nested-step">
+                                                And I directed to dashboard
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=4">
+                                    <img src="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         href="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=7">
+                                    <img src="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         href="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">4s 237ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection0-2" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="90" class="step-icon">
+                        <a name="0-2-0"></a>
+                            <span style="margin-left: 60px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                Menu on dashboard displayed
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=6">
+                                    <img src="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         href="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 704ms</span></td>
+                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-3"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click vaccination bookings
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=9">
+                                    <img src="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         href="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=10">
+                                    <img src="53605293d6b97be9111c26575b4478928d2eea6c0acd8c6666ffbaba60a8a8a8.png"
+                                         href="53605293d6b97be9111c26575b4478928d2eea6c0acd8c6666ffbaba60a8a8a8.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 729ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-4"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click my health facility
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=11">
+                                    <img src="53605293d6b97be9111c26575b4478928d2eea6c0acd8c6666ffbaba60a8a8a8.png"
+                                         href="53605293d6b97be9111c26575b4478928d2eea6c0acd8c6666ffbaba60a8a8a8.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=12">
+                                    <img src="cf423ff77d8b40815115420e5f817e17cd5453b7e263a41e3c2d0211940b8406.png"
+                                         href="cf423ff77d8b40815115420e5f817e17cd5453b7e263a41e3c2d0211940b8406.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 511ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-5"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click edit status button
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=13">
+                                    <img src="cf423ff77d8b40815115420e5f817e17cd5453b7e263a41e3c2d0211940b8406.png"
+                                         href="cf423ff77d8b40815115420e5f817e17cd5453b7e263a41e3c2d0211940b8406.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=14">
+                                    <img src="9f626027bbbeff8cd005c302e56f86057c9aa7d1c2e3b63904a9434f64732669.png"
+                                         href="9f626027bbbeff8cd005c302e56f86057c9aa7d1c2e3b63904a9434f64732669.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 266ms</span></td>
+                </tr>
+                <tr class="test-ERROR">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-6"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon ' title='ERROR'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click choose vaccination status "vaccinated"
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="ERROR-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=15">
+                                    <img src="9f626027bbbeff8cd005c302e56f86057c9aa7d1c2e3b63904a9434f64732669.png"
+                                         href="9f626027bbbeff8cd005c302e56f86057c9aa7d1c2e3b63904a9434f64732669.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=16">
+                                    <img src="665b50965319f8d02e8455eeb1452a1b29abac9d0c16d9b13e733ae69439a275.png"
+                                         href="665b50965319f8d02e8455eeb1452a1b29abac9d0c16d9b13e733ae69439a275.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">ERROR</span></td>
+                    <td width="100"><span class="nested-group-step">4s 303ms</span></td>
+                </tr>
+                    <tr class="test-ERROR">
+                        <td width="40">&nbsp</td>
+                        <td width="%" colspan="4" class="error-message-cell">
+
+
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@class= &#39;p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer&#39;]&quot;}<br>  (Session info: chrome=103.0.5060.114)<br>For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element<br>Build info: version: &#39;4.1.2&#39;, revision: &#39;9a5a329c5a&#39;<br>System info: host: &#39;INGGRIT&#39;, ip: &#39;192.168.137.1&#39;, os.name: &#39;Windows 10&#39;, os.arch: &#39;amd64&#39;, os.version: &#39;10.0&#39;, java.version: &#39;15.0.2&#39;<br>Driver info: org.openqa.selenium.chrome.ChromeDriver<br>Command: [90b176e448e9c40e0ae63004c01877a3, findElement {using=xpath, value=//*[@class= &#39;p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer&#39;]}]<br>Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\ponda\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62382}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62382/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}<br>Session ID: 90b176e448e9c40e0ae63004c01877a3<br>For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element<br>Build info: version: &#39;4.1.2&#39;, revision: &#39;9a5a329c5a&#39;<br>System info: host: &#39;INGGRIT&#39;, ip: &#39;192.168.137.1&#39;, os.name: &#39;Windows 10&#39;, os.arch: &#39;amd64&#39;, os.version: &#39;10.0&#39;, java.version: &#39;15.0.2&#39;<br>Driver info: driver.version: unknown</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-9"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-9">
+            <div class="card">
+                <div class="card-header">
+                    <h4>org.openqa.selenium.NoSuchElementException </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>starter.pages.admin.vaccination_booking.scrollTo(vaccination_booking.java:39)<br />starter.stepdefinitions.vaccinationBookingSteps.iClickChooseVaccinationStatus(vaccinationBookingSteps.java:23)<br />✽.I click choose vaccination status "vaccinated"(file:///C:/Users/ponda/Downloads/Video/Web_Automation/src/test/resources/features/vaccination_bookings.feature:10)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                        </td>
+                    </tr>
+                <tr class="test-SKIPPED">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-7"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-skip-forward skipped-icon ' title='SKIPPED'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click update button
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SKIPPED-text">
+
+                        </td>
+                    <td width="130"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">061ms</span></td>
+                </tr>
+                <tr class="test-SKIPPED">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-8"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-skip-forward skipped-icon ' title='SKIPPED'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I success update vaccination status "vaccinated"
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SKIPPED-text">
+
+                        </td>
+                    <td width="130"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">037ms</span></td>
+                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                <tr class="test-ERROR">
+
+                    <td width="50" class="step-icon">
+                        <a name="1"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection1 error-icon"
+                                   style="margin-left: 20px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1')"
+                               style="display:block;">
+                                <span class="top-level-step">
+                                                2: Update vaccination booking's status ({status=not_yet, result=not_yet})
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="ERROR-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=17">
+                                    <img src="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         href="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=32">
+                                    <img src="9c8f544fc1ac3e87e95fe15e3c0478584f03c8a4a989677972186d9b2763e9f8.png"
+                                         href="9c8f544fc1ac3e87e95fe15e3c0478584f03c8a4a989677972186d9b2763e9f8.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="top-level-step">ERROR</span></td>
+                    <td width="100"><span class="top-level-step">21s 657ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection1" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-0"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                Given I am on Evizy login admin page for vaccination session
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=18">
+                                    <img src="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         href="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">7s 609ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-1"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                When I enter my username and password for vaccination session and click login button
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=19">
+                                    <img src="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         href="2c1f36d9ed6d83a040ce305829ae3d5aa2ca8176a2ab04dc3bb248570b46c122.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=20">
+                                    <img src="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         href="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">2s 585ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-2"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1-2')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection1-2 success-icon"
+                                   style="margin-left: 40px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection1-2')"
+                               style="display:block;">
+                                <span class="nested-step">
+                                                And I directed to dashboard
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=21">
+                                    <img src="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         href="427d7c5bd519e3e08d645df5e6cacb49c2683440379a39781ad688e619a6eed1.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=24">
+                                    <img src="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         href="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">3s 119ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection1-2" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="90" class="step-icon">
+                        <a name="1-2-0"></a>
+                            <span style="margin-left: 60px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                Menu on dashboard displayed
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=23">
+                                    <img src="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         href="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 213ms</span></td>
+                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-3"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click vaccination bookings
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=26">
+                                    <img src="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         href="133b9780295ad5b263af1e3770c008380d0007addc0bb4f791804e876154ae3c.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=27">
+                                    <img src="9e6cb51785b9ea14d8bae945c2dcc7b3d2267ef2949780af0a4004b13fa52b8d.png"
+                                         href="9e6cb51785b9ea14d8bae945c2dcc7b3d2267ef2949780af0a4004b13fa52b8d.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 443ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-4"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click my health facility
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=28">
+                                    <img src="9e6cb51785b9ea14d8bae945c2dcc7b3d2267ef2949780af0a4004b13fa52b8d.png"
+                                         href="9e6cb51785b9ea14d8bae945c2dcc7b3d2267ef2949780af0a4004b13fa52b8d.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=29">
+                                    <img src="c7f0ce23ed9afdaf619fd4a7fd25ede7443e536bc17ff78906a680b6d9a487d5.png"
+                                         href="c7f0ce23ed9afdaf619fd4a7fd25ede7443e536bc17ff78906a680b6d9a487d5.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 467ms</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-5"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click edit status button
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SUCCESS-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=30">
+                                    <img src="c7f0ce23ed9afdaf619fd4a7fd25ede7443e536bc17ff78906a680b6d9a487d5.png"
+                                         href="c7f0ce23ed9afdaf619fd4a7fd25ede7443e536bc17ff78906a680b6d9a487d5.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=31">
+                                    <img src="6634c7cc1eafcfc3f1c73ea6e13d290de1535664871b7cb4eac7b74019fe625b.png"
+                                         href="6634c7cc1eafcfc3f1c73ea6e13d290de1535664871b7cb4eac7b74019fe625b.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">1s 323ms</span></td>
+                </tr>
+                <tr class="test-ERROR">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-6"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-exclamation-triangle-fill error-icon ' title='ERROR'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click choose vaccination status "not_yet"
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="ERROR-text">
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=32">
+                                    <img src="6634c7cc1eafcfc3f1c73ea6e13d290de1535664871b7cb4eac7b74019fe625b.png"
+                                         href="6634c7cc1eafcfc3f1c73ea6e13d290de1535664871b7cb4eac7b74019fe625b.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                                <i class="bi bi-arrow-right"></i>
+
+                                <a href="6361362dacf9fce03e49fe3c85a5369111ed071b4eca782dfda382f294a8b35a_screenshots.html#screenshots?screenshot=33">
+                                    <img src="9c8f544fc1ac3e87e95fe15e3c0478584f03c8a4a989677972186d9b2763e9f8.png"
+                                         href="9c8f544fc1ac3e87e95fe15e3c0478584f03c8a4a989677972186d9b2763e9f8.png"
+                                         class="screenshot"
+                                         width="48" height="48"/>
+                                </a>
+                        </td>
+                    <td width="130"><span class="nested-group-step">ERROR</span></td>
+                    <td width="100"><span class="nested-group-step">3s 866ms</span></td>
+                </tr>
+                    <tr class="test-ERROR">
+                        <td width="40">&nbsp</td>
+                        <td width="%" colspan="4" class="error-message-cell">
+
+
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@class= &#39;p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer&#39;]&quot;}<br>  (Session info: chrome=103.0.5060.114)<br>For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element<br>Build info: version: &#39;4.1.2&#39;, revision: &#39;9a5a329c5a&#39;<br>System info: host: &#39;INGGRIT&#39;, ip: &#39;192.168.137.1&#39;, os.name: &#39;Windows 10&#39;, os.arch: &#39;amd64&#39;, os.version: &#39;10.0&#39;, java.version: &#39;15.0.2&#39;<br>Driver info: org.openqa.selenium.chrome.ChromeDriver<br>Command: [084f90fcdba188c630b053b5ff69274e, findElement {using=xpath, value=//*[@class= &#39;p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer&#39;]}]<br>Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\ponda\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62414}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62414/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}<br>Session ID: 084f90fcdba188c630b053b5ff69274e<br>For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element<br>Build info: version: &#39;4.1.2&#39;, revision: &#39;9a5a329c5a&#39;<br>System info: host: &#39;INGGRIT&#39;, ip: &#39;192.168.137.1&#39;, os.name: &#39;Windows 10&#39;, os.arch: &#39;amd64&#39;, os.version: &#39;10.0&#39;, java.version: &#39;15.0.2&#39;<br>Driver info: driver.version: unknown</span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-20"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-20">
+            <div class="card">
+                <div class="card-header">
+                    <h4>org.openqa.selenium.NoSuchElementException </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>starter.pages.admin.vaccination_booking.scrollTo(vaccination_booking.java:39)<br />starter.stepdefinitions.vaccinationBookingSteps.iClickChooseVaccinationStatus(vaccinationBookingSteps.java:27)<br />✽.I click choose vaccination status "not_yet"(file:///C:/Users/ponda/Downloads/Video/Web_Automation/src/test/resources/features/vaccination_bookings.feature:10)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                        </td>
+                    </tr>
+                <tr class="test-SKIPPED">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-7"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-skip-forward skipped-icon ' title='SKIPPED'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I click update button
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SKIPPED-text">
+
+                        </td>
+                    <td width="130"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">025ms</span></td>
+                </tr>
+                <tr class="test-SKIPPED">
+
+                    <td width="70" class="step-icon">
+                        <a name="1-8"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-skip-forward skipped-icon ' title='SKIPPED'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                And I success update vaccination status "not_yet"
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                        <td width="160" class="SKIPPED-text">
+
+                        </td>
+                    <td width="130"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">101ms</span></td>
+                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+            <tr class="test-ERROR">
+                    <td colspan="3"></td>
+                <td width="130"><span class="top-level-step"><em>ERROR</em></span></td>
+                <td width="100"><span class="top-level-step"><em>72.28s</em></span></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div id="beforefooter"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 3.2.1</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function toggleDiv(divId) {
+        $("#" + divId).toggle();
+        var imgsrc = $(".img" + divId).attr('src');
+        if (imgsrc == 'images/plus.png') {
+            $(".img" + divId).attr("src", function () {
+                return "images/minus.png";
+            });
+
+        } else {
+            $(".img" + divId).attr("src", function () {
+                return "images/plus.png";
+            });
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    $(document).ready(function () {
+        $('img.screenshot').imgPreview({
+            imgCSS: {
+                width: '500px'
+            },
+            distanceFromCursor: {top: 10, left: -200}
+        });
+    });
+
+    //]]>
+</script>
+<div id="imgPreviewContainer" style="position: absolute; top: 612px; left: 355px; display: none; " class=""><img
+            src="" style="display: none; "></div>
+<div id="imgPreviewContainer2" style="position: absolute; top: 925px; left: 320px; display: none; " class="">
+    <img style="width: 200px; display: none; " src=""></div>
+<div id="imgPreviewWithStyles" style="position: absolute; top: 1272px; left: 321px; display: none; " class="">
+    <img style="height: 200px; opacity: 1; display: none; " src=""></div>
+<div id="imgPreviewWithStyles2" style="display: none; position: absolute; "><img style="height: 200px; "></div>
+<div id="imgPreviewWithStyles3" style="display: none; position: absolute; "><img style="height: 200px; "></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Vaccination Pass","POST - Create vaccination Pass","SUCCESS","2022-07-19T12:41:06.5933028+07:00[Asia/Jakarta]","0.0","18.38"
+"Vaccination Pass","GET - Get all vaccination pass","SUCCESS","2022-07-19T12:41:25.048204+07:00[Asia/Jakarta]","0.0","1.16"
+"Vaccination Pass","GET - Get specific vaccination pass","SUCCESS","2022-07-19T12:41:26.7916+07:00[Asia/Jakarta]","0.0","2.2"
+"Vaccination Pass","DELETE - Delete specific vaccination pass","SUCCESS","2022-07-19T12:41:29.4779106+07:00[Asia/Jakarta]","0.0","1.09"
+"Vaccination Pass","PUT - Update vaccination pass detail","SUCCESS","2022-07-19T12:41:30.6373546+07:00[Asia/Jakarta]","0.0","1.35"
+"Vaccination Pass","PUT - Update vaccination status_true","SUCCESS","2022-07-19T12:41:32.0857552+07:00[Asia/Jakarta]","0.0","0.77"
+"Vaccination Pass","PUT - Update vaccination status_false","SUCCESS","2022-07-19T12:41:32.8751276+07:00[Asia/Jakarta]","0.0","0.7"

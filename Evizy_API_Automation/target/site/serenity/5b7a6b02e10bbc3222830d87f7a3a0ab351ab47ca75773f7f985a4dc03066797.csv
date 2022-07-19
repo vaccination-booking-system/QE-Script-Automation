@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Vaccination Session","POST - Create Vaccination Session","SUCCESS","2022-07-19T12:41:07.3847377+07:00[Asia/Jakarta]","0.0","16.92"
+"Vaccination Session","GET - Vaccination Session of specific city","SUCCESS","2022-07-19T12:41:24.3360592+07:00[Asia/Jakarta]","0.0","1.79"
+"Vaccination Session","GET - Get specific Vaccination Session","SUCCESS","2022-07-19T12:41:27.1585639+07:00[Asia/Jakarta]","0.0","2.67"
+"Vaccination Session","DELETE - Delete Specific Vaccination Session","SUCCESS","2022-07-19T12:41:29.9712914+07:00[Asia/Jakarta]","0.0","1.12"

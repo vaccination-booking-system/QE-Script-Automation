@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Health Facilities","POST- Create Health Facility","SUCCESS","2022-07-19T12:41:07.2666697+07:00[Asia/Jakarta]","0.0","17.33"
+"Health Facilities","GET - Get specific Health Facility","SUCCESS","2022-07-19T12:41:24.6156983+07:00[Asia/Jakarta]","0.0","2.15"
+"Health Facilities","GET - Get all health facilities","SUCCESS","2022-07-19T12:41:27.4318424+07:00[Asia/Jakarta]","0.0","1.03"
+"Health Facilities","DELETE - Delete health facility","SUCCESS","2022-07-19T12:41:28.602848+07:00[Asia/Jakarta]","0.0","1.33"

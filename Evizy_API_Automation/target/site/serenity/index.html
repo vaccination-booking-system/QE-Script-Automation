@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity Reports</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--[if IE 7]>
+<!--<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">-->
+
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/v4-shims.min.css">
+
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><link rel="stylesheet" type="text/css" href="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.css">
+<link rel="stylesheet" type="text/css" href="chartist/dist/chartist.min.css">
+<script src="chartist/dist/chartist.min.js"></script>
+<script src="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+<!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.20/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.20/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.20/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.20/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.20/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.20/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.20/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.20/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.20/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.20/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+
+
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+
+            $('.scenario-result-table').DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "pageLength": 10,
+                "language": {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                },
+                columnDefs: [
+                    { type: 'time-elapsed-dhms', targets: 4 }
+                ]
+            });
+
+            // Results table
+            $('#test-results-table').DataTable({
+                "order": [[0, "asc",], [3, "asc",]],
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]]
+            });
+
+            $('#evidence-table').DataTable({
+                searching: false,
+                paging: false,
+                info: false
+            });
+
+            $(".feature-coverage-table").DataTable({
+                searching: false,
+                paging: false,
+                info: false
+            });
+
+            $(".feature-coverage-table-with-pagination").DataTable({
+                order: [[0, "asc",]],
+                pageLength: 10,
+                language: {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle"></span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs"><a href="index.html">Home</a>
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 19-07-2022 12:41</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="middlb">
+            <div class="table">
+
+                <h2>Test Results: All Tests</h2>
+                <table class='overview'>
+                    <tr>
+                        <td width="375px" valign="top">
+                            <div class="test-count-summary">
+                                <div class="test-count-title">
+                                    63 test scenarios 
+                                        (including 26 rows of test data)
+                                    
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#summary"><i class="fas fa-home"></i> Summary</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#tests"><i class="fas fa-tachometer-alt"></i> Test
+                                            Results</a>
+                                    </li>
+                                </ul>
+
+
+                                <div class="card border">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div id="summary" class="tab-pane fade in active">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                            <div style="width:300px;"
+                                                                 class="chart-container automated-and-manual-results">
+                                                                <div class="ct-chart ct-square"></div>
+                                                            </div>
+                                                            <script>
+
+                                                                var labels = ['100%', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+                                                                // Our series array that contains series objects or in this case series data arrays
+
+                                                                var series = [{meta: 'Passing tests (automated)', value: 63}, {meta: 'Passing tests (manual)', value: 0}, {meta: 'Pending tests (automated)', value: 0}, {meta: 'Pending tests (manual)', value: 0}, {meta: 'Ignored tests (automated)', value: 0}, {meta: 'Ignored tests (manual)', value: 0}, {meta: 'Skipped tests (automated)', value: 0}, {meta: 'Skipped tests (manual)', value: 0}, {meta: 'Failing tests (automated)', value: 0}, {meta: 'Failing tests (manual)', value: 0}, {meta: 'Broken tests (automated)', value: 0}, {meta: 'Broken tests (manual)', value: 0}, {meta: 'Compromised tests (automated)', value: 0}, {meta: 'Compromised tests (manual)', value: 0}];
+
+                                                                // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
+                                                                // as you saw in the previous example
+                                                                var options = {
+                                                                    width: 350,
+                                                                    height: 300
+                                                                };
+
+
+                                                                new Chartist.Pie('.ct-chart', {
+                                                                    series: series,
+                                                                    labels: labels
+                                                                }, {
+                                                                    plugins: [Chartist.plugins.tooltip()],
+                                                                    donut: true,
+                                                                    donutWidth: 60,
+                                                                    donutSolid: true,
+                                                                    startAngle: 270,
+                                                                    showLabel: true
+                                                                }, options);
+
+
+                                                                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                                                    new Chartist.Pie('.ct-chart', {
+                                                                        series: series,
+                                                                        labels: labels
+                                                                    }, {
+                                                                        plugins: [Chartist.plugins.tooltip()],
+                                                                        donut: true,
+                                                                        donutWidth: 60,
+                                                                        donutSolid: true,
+                                                                        startAngle: 270,
+                                                                        showLabel: true
+                                                                    }, options);
+                                                                });
+
+
+                                                            </script>
+                                                    </div>
+                                                    <div class="col-sm-8">
+
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col">Scenario Results (including rows of test
+                                                                    data)
+                                                                </th>
+                                                                <th scope="col" colspan="2" class="automated-stats">
+                                                                    Automated
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count">
+                                                                        <a href="01f5288b80adbd3af52a8ed68a4a616d3164f750229f80da1ef344382d948835.html"><i
+                                                                                    class='fa fa-check-circle-o success-icon'></i>&nbsp;Passing</a>
+                                                                    </td>
+                                                                <td class="automated-stats">63</td>
+                                                                <td class="automated-stats">100%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                                class='fa fa-stop-circle-o pending-icon'></i>&nbsp;Pending
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                                class='fa fa-ban ignored-icon'></i>&nbsp;Ignored
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count"><i
+                                                                                class='fa fa-fast-forward skip-icon'></i>&nbsp;Skipped
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                        <td colspan="3"><i
+                                                                                    class='fa fa-times failure-icon'></i>&nbsp;<em>Unsuccessful</em></a>
+                                                                        </td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count indented-error-category">
+                                                                        <i
+                                                                                class='fa fa-times-circle failure-icon'></i>&nbsp;Failed
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count indented-error-category">
+                                                                        <i
+                                                                                class='fa fa-exclamation-triangle error-icon'></i>&nbsp;Broken
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            <tr>
+                                                                    <td class="aggregate-result-count indented-error-category">
+                                                                        <i
+                                                                                class='fa fa-chain-broken compromised-icon'></i>&nbsp;Compromised
+                                                                    </td>
+                                                                <td class="automated-stats">0</td>
+                                                                <td class="automated-stats"> </td>
+                                                            </tr>
+                                                            <tr class="summary-stats">
+                                                                <td class="aggregate-result-count">Total</td>
+                                                                <td class="automated-stats">63</td>
+                                                                <td class="automated-stats"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Execution Time</th>
+                                                                <th>Clock Time</th>
+                                                                <th>Fastest Test</th>
+                                                                <th>Slowest Test</th>
+                                                                <th>Average Execution Time</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td> 4m 17s</td>
+                                                                <td>28s</td>
+                                                                <td>638ms</td>
+                                                                <td>18s</td>
+                                                                <td>5s</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h3>Functional Coverage Overview</h3>
+
+
+                                                                    <h4>Features</h4>
+
+                                                                    <table class="table feature-coverage-table-with-pagination"
+                                                                           id="Feature">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>Feature</th>
+                                                                            <th style="width:7.5em;">Scenarios</th>
+                                                                            <th style="width:7.5em;">% Pass</th>
+                                                                            <th style="width:7.5em;">Result</th>
+                                                                            <th>Coverage</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="13b93adce14c4ba71bf2814b707b160fb1c81b713f8b85081067107d5de51583.html">Admin</a>
+                                                                                </td>
+                                                                                <td>4</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="4"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="e8a905ea79888e8e2c8ae1f78e0ddfd8716dfcce32be85358c001456d372708a.html">City</a>
+                                                                                </td>
+                                                                                <td>8</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="8"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="1f2c99545da1a9d0bcc2a8dd5c6729b2d6fbcab7eff2d55d25050a6d4612715a.html">Family Member</a>
+                                                                                </td>
+                                                                                <td>4</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="4"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="b63e7922e4c74bbe7071e80ead1035a8f28a0cc26bdb7d8170da395a56f6b8d6.html">Health Facilities</a>
+                                                                                </td>
+                                                                                <td>4</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="4"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="eda9645ecea73214dea660b9d79f3beae2edb1bb1ee566a2476b38cd1d69a575.html">Login</a>
+                                                                                </td>
+                                                                                <td>13</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="13"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="e55c11f33630258ac5e2de85c492caab5baf8e3dc69e70f12bc64a9e733297e0.html">Login Super Admin</a>
+                                                                                </td>
+                                                                                <td>1</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="1"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                                </td>
+                                                                                <td>7</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="7"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="de7f7fb254d30265ef1612e3319e337275d378d27c0924230a847d6a8c297ab2.html">User</a>
+                                                                                </td>
+                                                                                <td>2</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="2"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                                </td>
+                                                                                <td>7</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="7"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="ec60f3fba453cf63102fce88eb552404b3e1df4756ce73603296376829a2b64f.html">Vaccination Session</a>
+                                                                                </td>
+                                                                                <td>4</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="4"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                        <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                                </td>
+                                                                                <td>9</td>
+                                                                                <td>100%</td>
+                                                                                <td>
+                                                                                        <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="progress">
+                                                                                            <div class="progress-bar"
+                                                                                                 role="progressbar"
+                                                                                                 style="width: 100%; background-color: #30cb23"
+                                                                                                 aria-valuenow="9"
+                                                                                                 title="100% success"
+                                                                                                 aria-valuemin="0"
+                                                                                                 aria-valuemax="100">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                        </div>
+                                                    </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div id="tests" class="tab-pane fade">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="fas fa-cogs"></i> Automated Tests</h3>
+
+                                                            <table class="scenario-result-table table"
+                                                                   id="scenario-results">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>feature</th>
+                                                                    <th class="test-name-column">Scenario</th>
+                                                                    <th>Steps</th>
+                                                                    <th>Started</th>
+                                                                    <th>Duration</th>
+                                                                    <th>Result</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="e55c11f33630258ac5e2de85c492caab5baf8e3dc69e70f12bc64a9e733297e0.html">Login Super Admin</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="f09cb9064523c21ebe6264de6bed5d1bdeb7f800d70d1eb3154b35f8e711d272.html">Login Super Admin</a>
+                                                                        </td>
+                                                                        <td>4</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>16s 036ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="13b93adce14c4ba71bf2814b707b160fb1c81b713f8b85081067107d5de51583.html">Admin</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="d1bd12e7bf0621a998b6c8fa5a56f1967daa6ac2f170e31f1524e36103ea4563.html">GET- All Admin</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>15s 426ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="13b93adce14c4ba71bf2814b707b160fb1c81b713f8b85081067107d5de51583.html">Admin</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="7e95cb4116ac0c6c3baf46584419b1d3d031762aadcd6525042c9ef318d261ec.html">GET - Specific Admin using id</a>
+                                                                                (2 examples)
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:23</td>
+                                                                        <td>5s 140ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="13b93adce14c4ba71bf2814b707b160fb1c81b713f8b85081067107d5de51583.html">Admin</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="fd8dd6a8833936988da4b99c241eceb32a7670a7b402241d6542e975835b846e.html">POST - Login Admin</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:29</td>
+                                                                        <td>1s 643ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="e8a905ea79888e8e2c8ae1f78e0ddfd8716dfcce32be85358c001456d372708a.html">City</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="d76f0bc53411c5aafb923079c6872450340970218dfb02dfe5ca79429b270531.html">POST- Create new city</a>
+                                                                                (4 examples)
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:06</td>
+                                                                        <td>23s 133ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="e8a905ea79888e8e2c8ae1f78e0ddfd8716dfcce32be85358c001456d372708a.html">City</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="586025dde3c2e85079f0ff5c5bd1cbdb1d53c6c96b0e1142075907e2c2ab6be3.html">GET- Get all city</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:30</td>
+                                                                        <td>957ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="e8a905ea79888e8e2c8ae1f78e0ddfd8716dfcce32be85358c001456d372708a.html">City</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="3e5e259e495efadd7ff79fa9aa59a35033ce232f16512b256c33b1e7bd60c8cf.html">GET - Get specific city using id</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:31</td>
+                                                                        <td>1s 007ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="e8a905ea79888e8e2c8ae1f78e0ddfd8716dfcce32be85358c001456d372708a.html">City</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="129b4f54922f02b2af289a4b7b36e6c4be6ae1ea410c00e263e515ed78ccc208.html">DELETE - Delete specific city</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:32</td>
+                                                                        <td>770ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="e8a905ea79888e8e2c8ae1f78e0ddfd8716dfcce32be85358c001456d372708a.html">City</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="2e48908f1c65542c83975ff131013e50aa48ffd40493d3bff64b45fd3b21985e.html">UPDATE - Update specific city</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:33</td>
+                                                                        <td>860ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="1f2c99545da1a9d0bcc2a8dd5c6729b2d6fbcab7eff2d55d25050a6d4612715a.html">Family Member</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="4af34b78ec9e255fe47a97a446c56b2cf1edf6a5eeed11a8a2d1d5283a9edb35.html">POST- add family member</a>
+                                                                                (2 examples)
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>15s 989ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="1f2c99545da1a9d0bcc2a8dd5c6729b2d6fbcab7eff2d55d25050a6d4612715a.html">Family Member</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="122f18f82a3b798dce8daaabd60cda589468afbdb7de6bcd2f66c87f6c50fc26.html">GET - get specific user's family members</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:23</td>
+                                                                        <td>3s 085ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="1f2c99545da1a9d0bcc2a8dd5c6729b2d6fbcab7eff2d55d25050a6d4612715a.html">Family Member</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="376be3246b3f82fadf4ce15d387abd8af871b594d25ed5c8be9edf8cefc26e9e.html">GET- Specific family member of user</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:27</td>
+                                                                        <td>818ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="b63e7922e4c74bbe7071e80ead1035a8f28a0cc26bdb7d8170da395a56f6b8d6.html">Health Facilities</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="6fd29f787c46b2e4969b77f8b4e6a789ad1ae9125bbe9fc9131bbc9580d941b2.html">POST- Create Health Facility</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>17s 325ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="b63e7922e4c74bbe7071e80ead1035a8f28a0cc26bdb7d8170da395a56f6b8d6.html">Health Facilities</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="de6847d6d5ff52e0d58c34a79061267dff6a7fc55bb8b350d4e21592f2b7d9a1.html">GET - Get specific Health Facility</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:24</td>
+                                                                        <td>2s 146ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="b63e7922e4c74bbe7071e80ead1035a8f28a0cc26bdb7d8170da395a56f6b8d6.html">Health Facilities</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="a48a7a7c76793a1efa7b0010195c0f5a7906e6785755b8dfcf6101024490e001.html">GET - Get all health facilities</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:27</td>
+                                                                        <td>1s 030ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="b63e7922e4c74bbe7071e80ead1035a8f28a0cc26bdb7d8170da395a56f6b8d6.html">Health Facilities</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="84f47ae1bb27359c03436bb9654a80d0e6c0b0001d305300fe4c300f5b9ea1aa.html">DELETE - Delete health facility</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:28</td>
+                                                                        <td>1s 326ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="eda9645ecea73214dea660b9d79f3beae2edb1bb1ee566a2476b38cd1d69a575.html">Login</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="cb2c71f137573861a32e6929f113aa6c10c8747c34b0187151f2ce57b0c90b70.html">Login</a>
+                                                                                (13 examples)
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>31s 848ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="b11dd9122450bdb39d48273f02ac119b68279bddb621a6a8a00154f006653d14.html">POST - Create News</a>
+                                                                                (2 examples)
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>19s 081ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="8e6ad8f2e217b6b71b84eb142ecb5d7b67a7407713ff088cba96b9be9b845731.html">POST - Create news using regular admin</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:27</td>
+                                                                        <td>923ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="8c5360ac8c2909764d6a4b02485931df43481a0d233528c6146b73fca798cfec.html">GET - Find all news</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:28</td>
+                                                                        <td>1s 478ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="31a0d2c30e02f8df2d9d788c4e51fa498735f14dc32ed92af1d6cc0c15cbc1da.html">GET - Find specific news</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:29</td>
+                                                                        <td>1s 144ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="6f43aa02b2c3c45042d8360f77d69e7a10b38d3b5e7cdfe4a9fb3adb4a13345b.html">DELETE - Delete specific news</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:31</td>
+                                                                        <td>944ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="c6329ac3e4668feefb6fbf47e3fe31b789accb9779278db57ba28bf4db646ef5.html">News</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="91a840c4c42a2c2d21f5448aba11fbe24f42a2ff013dcca341b5f6910eaa84ea.html">UPDATE - Put request to update specific news</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:32</td>
+                                                                        <td>824ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="de7f7fb254d30265ef1612e3319e337275d378d27c0924230a847d6a8c297ab2.html">User</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="5642149d4142ef917fbe68745e4208c414c81c8d47a42add7d00702502ec6c61.html">GET - GET all users</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:05</td>
+                                                                        <td>18s 255ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="de7f7fb254d30265ef1612e3319e337275d378d27c0924230a847d6a8c297ab2.html">User</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="221c60dca1a877118fe20b0b931ac647fbab21ede741dedaf4f1df40e457659f.html">GET - Get specific user using id</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:23</td>
+                                                                        <td>1s 816ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="fb507f873a47277e308cfc1664627ce77fc8e49f90bec454c81e3a3642a20891.html">POST - Create vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:06</td>
+                                                                        <td>18s 376ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="0cd2a8e705b8ff7ec3d7cd519c2de65d405fa30c53c9e73ea65dd5c28394b406.html">GET - Get all vaccination pass</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:25</td>
+                                                                        <td>1s 164ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="8c205932e689da9928909a9f2c9f110749dfaeb278353d897d75d934c0e3f5b5.html">GET - Get specific vaccination pass</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:26</td>
+                                                                        <td>2s 201ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="8347f7a666795fe4cc30caa7851602b101e57b9c4d08c02cf6aa5a5c46d09fa2.html">DELETE - Delete specific vaccination pass</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:29</td>
+                                                                        <td>1s 091ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="9d3731ce9e7fe942cbf660bc37dbf493b41043f7d682db4fb85a5fe3546f0c85.html">PUT - Update vaccination pass detail</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:30</td>
+                                                                        <td>1s 354ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="46ab179e7ad815ba786496b013498310e80099cc64ce4b63af6e0331b5ea5b77.html">PUT - Update vaccination status_true</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:32</td>
+                                                                        <td>773ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="0319d9311875323777b9fb6aac10552d9f862f92e2a90b399f5904eae3fcf6ec.html">Vaccination Pass</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="086f81eba44d5fae35575ef174d118e97ce81c905047e8484bd1b0a9d8449fad.html">PUT - Update vaccination status_false</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:32</td>
+                                                                        <td>697ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ec60f3fba453cf63102fce88eb552404b3e1df4756ce73603296376829a2b64f.html">Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="650f4f6a84ee679cceffb2607ef47afccece7613be20b3dd6919ad3cf1d1c37d.html">POST - Create Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>16s 923ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ec60f3fba453cf63102fce88eb552404b3e1df4756ce73603296376829a2b64f.html">Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="2f60b8b5b0f1fa0b5129734244efdc5ec8cb25ee466520e1a553eeb8f011cf42.html">GET - Vaccination Session of specific city</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:24</td>
+                                                                        <td>1s 786ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ec60f3fba453cf63102fce88eb552404b3e1df4756ce73603296376829a2b64f.html">Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="e2f9390cdfac545398b8ce031d6a013c513b20298aa5c2f3f09989005e7bb371.html">GET - Get specific Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:27</td>
+                                                                        <td>2s 673ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ec60f3fba453cf63102fce88eb552404b3e1df4756ce73603296376829a2b64f.html">Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="6980768818984da8d8fa14db7790d634956363c253428154f590b1042433a2b4.html">DELETE - Delete Specific Vaccination Session</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:29</td>
+                                                                        <td>1s 120ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="5618cfb737849e13f05b3e1fefa99b0ec89c0a40197938ab67d4589270089ee7.html">POST - Create Vaccine</a>
+                                                                                (3 examples)
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:07</td>
+                                                                        <td>21s 660ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="fff3f692b1789d2776e92ac29f870856fd176bd348869a83318863e57cf9b583.html">GET - Get specific vaccine</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:29</td>
+                                                                        <td>1s 024ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="7236c8951aee7caa78a054b741382906befc2a837ad3faf2cc29c50879e5db16.html">DELETE - Delete specific vaccine</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:30</td>
+                                                                        <td>816ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="9e2500e9b06cee378b3d6711e7c5f74ead8a48e9c766e0a4b65d2e8c1dd33b43.html">PUT - Update vaccine name</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:31</td>
+                                                                        <td>791ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="1b0a3261ba6c404f18e7b33e765815c8a943e5bc6f5096827447aff303e1cda2.html">GET- Get all vaccine</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:32</td>
+                                                                        <td>867ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="de196423cf05e015e17e3032cb1ee9bb082cea047b58fac5bb483185b54e7f99.html">POST - Distribute vaccine to health facility</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:33</td>
+                                                                        <td>721ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="scenario-result SUCCESS">
+                                                                        <td>
+                                                                                <a href="ab839400ec67de17408f01f723c142275150743845bcf345569c021aed02e882.html">Vaccine</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="be74ff21248b7bddb88cb23a864f3431cc45dbc5fbe9b1de301aff10df3bf081.html">GET - vaccine stocks of health facility</a>
+                                                                        </td>
+                                                                        <td>3</td>
+                                                                        <td>12:41:34</td>
+                                                                        <td>638ms</td>
+                                                                        <td><a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                    style="display:none">SUCCESS</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h3><i class="fas fa-edit"></i> Manual Tests</h3>
+
+                                                            No manual tests were recorded
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="beforefooter"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 2.6.0</span>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

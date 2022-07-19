@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+Test set: CucumberTestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 121.058 s <<< FAILURE! - in CucumberTestSuite
+Vaccination Bookings.Update vaccination booking's status #1  Time elapsed: 49.25 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"//*[@class= 'p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer']"}
+  (Session info: chrome=103.0.5060.114)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.1.2', revision: '9a5a329c5a'
+System info: host: 'INGGRIT', ip: '192.168.137.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [90b176e448e9c40e0ae63004c01877a3, findElement {using=xpath, value=//*[@class= 'p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\ponda\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62382}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62382/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 90b176e448e9c40e0ae63004c01877a3
+
+Vaccination Bookings.Update vaccination booking's status #2  Time elapsed: 23.851 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"//*[@class= 'p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer']"}
+  (Session info: chrome=103.0.5060.114)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.1.2', revision: '9a5a329c5a'
+System info: host: 'INGGRIT', ip: '192.168.137.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [084f90fcdba188c630b053b5ff69274e, findElement {using=xpath, value=//*[@class= 'p-[4px] mx-1 bg-green-200  font-bold text-xs rounded-xl text-white inline-block cursor-pointer']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\ponda\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62414}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62414/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 084f90fcdba188c630b053b5ff69274e
+
+Vaccine Stock.Update Vaccination Stock  Time elapsed: 20.573 s  <<< ERROR!
+org.openqa.selenium.InvalidElementStateException: 
+invalid element state
+  (Session info: chrome=103.0.5060.114)
+Build info: version: '4.1.2', revision: '9a5a329c5a'
+System info: host: 'INGGRIT', ip: '192.168.137.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [3fc6c66fef4483d52522f141d7fab3eb, clearElement {id=91e00fb5-9cea-43cc-b721-9f0c4aa07e7c}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\ponda\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62446}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62446/devtoo..., se:cdpVersion: 103.0.5060.114, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (3fc6c66fef4483d52522f141d7fab3eb)] -> xpath: //*[@id="root"]/div/div/div/div[1]/div[3]/table/tbody/tr[1]/td[3]]
+Session ID: 3fc6c66fef4483d52522f141d7fab3eb
+

@@ -1,0 +1,16 @@
+starter\stepdefinitions\sessionAvailSteps.class
+starter\stepdefinitions\login_adminSteps.class
+starter\pages\loginPage.class
+starter\pages\addFamMember.class
+starter\stepdefinitions\vaccineStockSteps.class
+starter\stepdefinitions\loginSteps.class
+starter\pages\dashboardPage.class
+CucumberTestSuite.class
+starter\stepdefinitions\registerSteps.class
+starter\pages\admin\sessionAvailability.class
+starter\pages\admin\vaccination_booking.class
+starter\pages\registerPage.class
+starter\stepdefinitions\vaccinationBookingSteps.class
+starter\pages\admin\login_admin.class
+starter\pages\admin\vaccination_stock.class
+starter\stepdefinitions\addFamilyMemSteps.class
